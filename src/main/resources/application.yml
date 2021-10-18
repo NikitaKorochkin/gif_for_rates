@@ -1,0 +1,20 @@
+logging:
+  level:
+    ru:
+      nkorochkin:
+        gif_for_rates:
+          client: debug
+
+openexchange:
+  appId: 9e6935d6b40e49a48a343551ef06017d
+  apiUrl: https://openexchangerates.org/api/
+  currencyCode: RUB
+  exchangeInfoType: historical
+
+giphy:
+  apiKey: 1WwsjFSoNiTOmX8zjWaNzsWhIaBzl06t
+  apiUrl: https://api.giphy.com/v1/gifs/
+  endpoint: random
+  tagRich: rich
+  tagBroke: broke
+  rating: g
