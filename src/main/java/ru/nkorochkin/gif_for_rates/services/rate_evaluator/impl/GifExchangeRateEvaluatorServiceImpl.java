@@ -34,7 +34,7 @@ public class GifExchangeRateEvaluatorServiceImpl implements GifExchangeRateEvalu
                 ? gifService.getRandomGifByTag(giphyConfig.getTagRich())
                 : gifService.getRandomGifByTag(giphyConfig.getTagBroke());
 
-        String gifUrl = gif.getData().getImageOriginalUrl();
+        String gifUrl = gif.getData().getOriginalImage().getImageOriginalUrl();
         if (gifUrl == null || !gifUrl.endsWith(".gif")) {
             throw new IncorrectGifUrlException("URL: " + gifUrl + ". This is not a gif URL!");
         }

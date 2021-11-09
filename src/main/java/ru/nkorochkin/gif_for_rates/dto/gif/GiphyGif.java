@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,8 +17,18 @@ public class GiphyGif {
 
     @Data
     public static class GifData {
-        @JsonProperty("image_original_url")
-        private String imageOriginalUrl;
+        @JsonProperty("images")
+       private Map<String, String> images;
+       private OriginalImage originalImage;
+
+       @Data
+       public static class OriginalImage    {
+           @JsonProperty("original")
+           private Map<String, String> original;
+           public String getImageOriginalUrl()  {
+               return original.get("url");
+           }
+       }
     }
 
 }
