@@ -76,8 +76,12 @@ class GifForRateControllerTest {
                 .thenReturn(exchangeRateYesterday);
 
         String gifUrl = "some_url.gif";
-        GiphyGif.GifData gifData = new GiphyGif.GifData();
-        gifData.setImageOriginalUrl(gifUrl);
+        GiphyGif.Datas gifData = new GiphyGif.Datas();
+        GiphyGif.Datas.Images images = new GiphyGif.Datas.Images();
+        GiphyGif.Datas.Images.Original original = new GiphyGif.Datas.Images.Original();
+        original.setUrl(gifUrl);
+        images.setOriginal(original);
+        gifData.setImages(images);
         GiphyGif gif = new GiphyGif(gifData);
         when(giphyClient.getRandomGifByTag(giphyConfig.getApiKey(), giphyConfig.getTagRich(), giphyConfig.getRating()))
                 .thenReturn(gif);

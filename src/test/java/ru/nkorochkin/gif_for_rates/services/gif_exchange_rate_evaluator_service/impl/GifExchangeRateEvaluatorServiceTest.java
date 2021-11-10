@@ -50,8 +50,8 @@ public class GifExchangeRateEvaluatorServiceTest {
 
         String incorrectGifUrl = "some-url.mp4";
         GiphyGif incorrectGif = new GiphyGif();
-        GiphyGif.GifData data = new GiphyGif.GifData();
-        data.setImageOriginalUrl(incorrectGifUrl);
+        GiphyGif.Datas data = new GiphyGif.Datas();
+        data.getImages().getOriginal().setUrl(incorrectGifUrl);
         incorrectGif.setData(data);
         when(giphyService.getRandomGifByTag(brokeTag)).thenReturn(incorrectGif);
 
@@ -70,8 +70,15 @@ public class GifExchangeRateEvaluatorServiceTest {
         String richTag = "rich_tag";
         when(giphyConfig.getTagRich()).thenReturn(richTag);
 
-        GiphyGif nullGif = new GiphyGif();
-        nullGif.setData(new GiphyGif.GifData());
+        GiphyGif.Datas gifData = new GiphyGif.Datas();
+        GiphyGif.Datas.Images images = new GiphyGif.Datas.Images();
+        GiphyGif.Datas.Images.Original original = new GiphyGif.Datas.Images.Original();
+        original.setUrl(null);
+        images.setOriginal(original);
+        gifData.setImages(images);
+        GiphyGif nullGif = new GiphyGif(gifData);
+
+
         when(giphyService.getRandomGifByTag(richTag)).thenReturn(nullGif);
 
         Exception exception = assertThrows(

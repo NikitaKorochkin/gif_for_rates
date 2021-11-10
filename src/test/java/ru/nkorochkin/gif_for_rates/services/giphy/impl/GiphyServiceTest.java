@@ -28,10 +28,13 @@ public class GiphyServiceTest {
 
     @Test
     void should_return_gif_dto() {
-        GiphyGif gif = new GiphyGif();
-        GiphyGif.GifData data = new GiphyGif.GifData();
-        data.setImageOriginalUrl("url");
-        gif.setData(data);
+        GiphyGif.Datas gifData = new GiphyGif.Datas();
+        GiphyGif.Datas.Images images = new GiphyGif.Datas.Images();
+        GiphyGif.Datas.Images.Original original = new GiphyGif.Datas.Images.Original();
+        original.setUrl("url");
+        images.setOriginal(original);
+        gifData.setImages(images);
+        GiphyGif gif = new GiphyGif(gifData);
 
         String gifApiKey = "apiKey";
         when(giphyConfig.getApiKey()).thenReturn(gifApiKey);
